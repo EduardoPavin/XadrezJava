@@ -22,10 +22,14 @@ public class PartidaXadrez {
         }
         return mat;
     }
-    private void FormacaoOriginal(){
+    private void ColarNovaPeca(char coluna, int linha, PecaXadrez peca){
+        tabuleiro.colocarPeca(peca, new PosicaoXadrez(coluna, linha).toPosicao());
+    }
 
-        tabuleiro.colocarPeca(new Torre(tabuleiro, Cor.BRANCO), new Posicao(2,1));
-        tabuleiro.colocarPeca(new Rei(tabuleiro, Cor.PRETO), new Posicao(0,4));
+    private void FormacaoOriginal(){
+        ColarNovaPeca('b',6, new Torre(tabuleiro, Cor.BRANCO));
+        ColarNovaPeca('e',8, new Rei(tabuleiro, Cor.PRETO));
+        ColarNovaPeca('e',1, new Rei(tabuleiro, Cor.BRANCO));
     }
 }
 
