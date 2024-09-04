@@ -9,8 +9,7 @@ public class Torre extends PecaXadrez {
         super(tabuleiro, cor);
     }
 
-    @Override
     public String toString(){
-        return "T";
+        return (getCor() == Cor.BRANCO) ? "♖" : "♜";
     }
 }
