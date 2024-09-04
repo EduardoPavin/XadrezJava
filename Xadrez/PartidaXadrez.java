@@ -1,5 +1,6 @@
 package Xadrez;
 
+import MesaDeJogo.ExcecaoMesa;
 import MesaDeJogo.Peca;
 import MesaDeJogo.Posicao;
 import MesaDeJogo.Tabuleiro;
@@ -21,6 +22,32 @@ public class PartidaXadrez {
             }
         }
         return mat;
+    }
+
+    private Peca fazerMovimento(Posicao origem, Posicao destino) {
+        Peca p = tabuleiro.removerPeca(origem);
+        Peca capturada = tabuleiro.removerPeca(destino);
+
+        if (p != null) {  // Verificação para evitar NullPointerException
+            tabuleiro.colocarPeca(p, destino);
+        } else {
+            throw new ExcecaoMesa("Nenhuma peça na posição de origem para mover");
+        }
+
+        return capturada;
+    }
+
+    public PecaXadrez fazerMovimentoPeca(PosicaoXadrez posicaoOrigem, PosicaoXadrez posicaoDestino){
+        Posicao origem = posicaoOrigem.toPosicao();
+        Posicao destino = posicaoDestino.toPosicao();
+        validarPosicaoOrigem(origem);
+        Peca pecaCapturada = fazerMovimento(origem, destino);
+        return (PecaXadrez)pecaCapturada;
+    }
+    private void validarPosicaoOrigem(Posicao posicao){
+        if (!tabuleiro.temPeca(posicao)){
+            throw new ExcecaoXadrez("Não existe peça na posição de origem");
+        }
     }
     private void ColarNovaPeca(char coluna, int linha, PecaXadrez peca){
         tabuleiro.colocarPeca(peca, new PosicaoXadrez(coluna, linha).toPosicao());

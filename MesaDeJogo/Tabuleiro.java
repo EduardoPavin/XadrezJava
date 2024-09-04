@@ -36,12 +36,29 @@ public class Tabuleiro {
         }
         return pecas[posicao.getLinha()][posicao.getColuna()];
     }
-    public void colocarPeca(Peca peca, Posicao posicao){
-        if (temPeca(posicao)){
-            throw new ExcecaoMesa("Já tem uma peça na posição "+posicao);
+    public void colocarPeca(Peca peca, Posicao posicao) {
+        if (peca == null) {
+            throw new ExcecaoMesa("Peça não pode ser nula");
+        }
+        if (temPeca(posicao)) {
+            throw new ExcecaoMesa("Já tem uma peça na posição " + posicao);
         }
         pecas[posicao.getLinha()][posicao.getColuna()] = peca;
         peca.posicao = posicao;
+    }
+
+
+    public Peca removerPeca(Posicao posicao){
+        if (!posicaoExiste(posicao)){
+            throw new ExcecaoMesa("Posição fora do tabuleiro");
+        }
+        if (peca(posicao) == null){
+            return null;
+        }
+        Peca aux = peca(posicao);
+        aux.posicao = null;
+        pecas[posicao.getLinha()][posicao.getColuna()] = null;
+        return aux;
     }
 
     private boolean posicaoExiste(int linha, int coluna){
