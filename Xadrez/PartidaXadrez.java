@@ -7,6 +7,8 @@ import MesaDeJogo.Tabuleiro;
 import Xadrez.pecas.Rei;
 import Xadrez.pecas.Torre;
 
+import javax.swing.text.Position;
+
 public class PartidaXadrez {
     private Tabuleiro tabuleiro;
 
@@ -23,7 +25,11 @@ public class PartidaXadrez {
         }
         return mat;
     }
-
+    public boolean[][] movimentosPossiveis(PosicaoXadrez posicaoOrigem){
+        Posicao posicao = posicaoOrigem.toPosicao();
+        validarPosicaoOrigem(posicao);
+        return tabuleiro.peca(posicao).movimentosPossiveis();
+    }
     private Peca fazerMovimento(Posicao origem, Posicao destino) {
         Peca p = tabuleiro.removerPeca(origem);
         Peca capturada = tabuleiro.removerPeca(destino);
