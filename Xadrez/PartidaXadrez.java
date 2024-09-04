@@ -48,6 +48,10 @@ public class PartidaXadrez {
         if (!tabuleiro.temPeca(posicao)){
             throw new ExcecaoXadrez("Não existe peça na posição de origem");
         }
+        if (!tabuleiro.peca(posicao).existemMovimentosPossiveis()){
+            throw new ExcecaoXadrez("Não existe movimentos possíveis para a peça escolhida");
+
+        }
     }
     private void ColarNovaPeca(char coluna, int linha, PecaXadrez peca){
         tabuleiro.colocarPeca(peca, new PosicaoXadrez(coluna, linha).toPosicao());
