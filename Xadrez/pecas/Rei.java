@@ -10,7 +10,7 @@ public class Rei extends PecaXadrez {
     }
     @Override
     public String toString(){
-        return (getCor() == Cor.BRANCO) ? "♔" : "♚";
+        return (getCor() == Cor.BRANCO) ? "♚" : "♔";
     }
 
     @Override
