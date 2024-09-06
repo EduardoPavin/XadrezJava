@@ -1,5 +1,6 @@
 package Aplicacao;
 
+
 import Xadrez.ExcecaoXadrez;
 import Xadrez.PartidaXadrez;
 import Xadrez.PecaXadrez;
@@ -21,21 +22,17 @@ public class Main {
                 System.out.println();
                 System.out.print("Origem: ");
                 PosicaoXadrez origem = UI.lerPosicaoXadrez(scanner);
-
                 boolean[][] movimentosPossiveis = partidaXadrez.movimentosPossiveis(origem);
                 UI.limparTela();
-                UI.printarTabuleiro(partidaXadrez.getPecas(), movimentosPossiveis); // Chamada correta
+                UI.printarTabuleiro(partidaXadrez.getPecas(), movimentosPossiveis);
 
                 System.out.println();
                 System.out.print("Destino: ");
                 PosicaoXadrez destino = UI.lerPosicaoXadrez(scanner);
 
                 PecaXadrez pecaCapturada = partidaXadrez.fazerMovimentoPeca(origem, destino);
-
-            } catch (ExcecaoXadrez e) {
-                System.out.println(e.getMessage());
-                scanner.nextLine();
-            } catch (InputMismatchException e) {
+            }
+            catch (ExcecaoXadrez | InputMismatchException e){
                 System.out.println(e.getMessage());
                 scanner.nextLine();
             }

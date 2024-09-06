@@ -7,8 +7,6 @@ import MesaDeJogo.Tabuleiro;
 import Xadrez.pecas.Rei;
 import Xadrez.pecas.Torre;
 
-import javax.swing.text.Position;
-
 public class PartidaXadrez {
     private Tabuleiro tabuleiro;
 
@@ -34,7 +32,7 @@ public class PartidaXadrez {
         Peca p = tabuleiro.removerPeca(origem);
         Peca capturada = tabuleiro.removerPeca(destino);
 
-        if (p != null) {  // Verificação para evitar NullPointerException
+        if (p != null) {
             tabuleiro.colocarPeca(p, destino);
         } else {
             throw new ExcecaoMesa("Nenhuma peça na posição de origem para mover");
@@ -65,14 +63,15 @@ public class PartidaXadrez {
             throw new ExcecaoXadrez("A peça escolhida não pode ir para a posição de destino");
         }
     }
-    private void ColarNovaPeca(char coluna, int linha, PecaXadrez peca){
+    private void colocarNovaPeca(char coluna, int linha, PecaXadrez peca){
         tabuleiro.colocarPeca(peca, new PosicaoXadrez(coluna, linha).toPosicao());
     }
 
     private void FormacaoOriginal(){
-        ColarNovaPeca('b',6, new Torre(tabuleiro, Cor.BRANCO));
-        ColarNovaPeca('e',8, new Rei(tabuleiro, Cor.PRETO));
-        ColarNovaPeca('e',1, new Rei(tabuleiro, Cor.BRANCO));
+        colocarNovaPeca('b',6, new Torre(tabuleiro, Cor.BRANCO));
+        colocarNovaPeca('e',8, new Rei(tabuleiro, Cor.PRETO));
+        colocarNovaPeca('e',1, new Rei(tabuleiro, Cor.BRANCO));
+        colocarNovaPeca('b',2, new Rei(tabuleiro, Cor.BRANCO));
     }
 }
 
