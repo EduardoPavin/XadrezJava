@@ -1,5 +1,6 @@
 package Aplicacao;
 
+import Xadrez.PartidaXadrez;
 import Xadrez.PecaXadrez;
 import Xadrez.PosicaoXadrez;
 
@@ -22,6 +23,12 @@ public class UI {
         catch (RuntimeException e){
             throw new InputMismatchException("Erro ao ler a posição, insira um valor válido");
         }
+    }
+    public static void printarPartida(PartidaXadrez partidaXadrez){
+        printarTabuleiro(partidaXadrez.getPecas());
+        System.out.println();
+        System.out.println("Turno: "+ partidaXadrez.getTurno());
+        System.out.println("Esperando o jogador "+partidaXadrez.getJogadorAtual()+" jogar!");
     }
     public static void printarTabuleiro(PecaXadrez[][] pecas) {
         for (int i = 0; i< pecas.length; i++){
